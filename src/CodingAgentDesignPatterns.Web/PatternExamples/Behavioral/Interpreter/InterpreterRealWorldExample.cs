@@ -8,11 +8,12 @@ public static class InterpreterRealWorldExample
     {
         var context = new Context(new[] { "Passport", "Phone Charger", "Ready" });
         IExpression expression = new AndExpression(new TerminalExpression("Passport"), new TerminalExpression("Phone Charger"));
+        var isReady = expression.Interpret(context);
 
         return new[]
         {
             "Packing checklist rule",
-            $"Checklist ready: True"
+            $"Checklist ready: {isReady}"
         };
     }
 

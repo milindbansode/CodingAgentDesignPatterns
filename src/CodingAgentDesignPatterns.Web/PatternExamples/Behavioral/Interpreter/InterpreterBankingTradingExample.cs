@@ -8,11 +8,12 @@ public static class InterpreterBankingTradingExample
     {
         var context = new Context(new[] { "KYC Passed", "Margin Approved", "Ready" });
         IExpression expression = new AndExpression(new TerminalExpression("KYC Passed"), new TerminalExpression("Margin Approved"));
+        var isEligible = expression.Interpret(context);
 
         return new[]
         {
             "Client eligibility rule",
-            $"Client eligible: True"
+            $"Client eligible: {isEligible}"
         };
     }
 

@@ -24,7 +24,8 @@ public sealed class DesignPatternCatalogService : IDesignPatternCatalogService
     public string ReadSourceCode(string relativeSourcePath)
     {
         var fullPath = Path.GetFullPath(Path.Combine(_contentRootPath, relativeSourcePath));
-        if (!fullPath.StartsWith(_contentRootPath, StringComparison.OrdinalIgnoreCase))
+        var normalizedRoot = Path.TrimEndingDirectorySeparator(_contentRootPath) + Path.DirectorySeparatorChar;
+        if (!fullPath.StartsWith(normalizedRoot, StringComparison.OrdinalIgnoreCase))
         {
             throw new InvalidOperationException("The requested source path is outside the application root.");
         }
@@ -38,13 +39,14 @@ public sealed class DesignPatternCatalogService : IDesignPatternCatalogService
     {
         var type = _assembly.GetType(typeName);
         var method = type?.GetMethod("Run", BindingFlags.Public | BindingFlags.Static);
+        var result = method?.Invoke(null, null);
 
-        if (method?.Invoke(null, null) is IReadOnlyList<string> output)
+        if (result is IReadOnlyList<string> output)
         {
             return output;
         }
 
-        if (method?.Invoke(null, null) is IEnumerable<string> enumerable)
+        if (result is IEnumerable<string> enumerable)
         {
             return enumerable.ToList();
         }

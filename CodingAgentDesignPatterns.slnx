@@ -1,2 +1,5 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CodingAgentDesignPatterns.Web/CodingAgentDesignPatterns.Web.csproj" />
+  </Folder>
 </Solution>
