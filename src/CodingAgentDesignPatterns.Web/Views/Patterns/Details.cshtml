@@ -1,0 +1,48 @@
+@model CodingAgentDesignPatterns.Web.Models.ViewModels.PatternDetailsViewModel
+@{
+    ViewData["Title"] = Model.Pattern.Name;
+}
+
+<section class="page-header mb-4">
+    <p class="eyebrow">@Model.Pattern.Category pattern</p>
+    <h1>@Model.Pattern.Name</h1>
+    <p class="text-muted mb-2">@Model.Pattern.Intent</p>
+    <p class="mb-0">@Model.Pattern.WhyItHelps</p>
+</section>
+
+<p>
+    <a asp-controller="Patterns" asp-action="Index" class="btn btn-outline-secondary">Back to explorer</a>
+</p>
+
+<div class="row g-4">
+    @foreach (var example in Model.Examples)
+    {
+        <div class="col-12">
+            <section class="example-card">
+                <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+                    <div>
+                        <span class="pattern-category">@example.Definition.Scenario</span>
+                        <h2 class="h3 mt-2">@example.Definition.Title</h2>
+                        <p class="text-muted mb-0">@example.Definition.Summary</p>
+                    </div>
+                    <span class="source-path">@example.Definition.RelativeSourcePath</span>
+                </div>
+
+                <div class="mt-4">
+                    <h3 class="h5">Sample output</h3>
+                    <ul class="sample-output">
+                        @foreach (var line in example.SampleOutput)
+                        {
+                            <li>@line</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="mt-4">
+                    <h3 class="h5">Commented source code</h3>
+                    <pre class="code-block"><code>@example.SourceCode</code></pre>
+                </div>
+            </section>
+        </div>
+    }
+</div>

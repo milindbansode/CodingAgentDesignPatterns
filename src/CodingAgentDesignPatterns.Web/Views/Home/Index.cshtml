@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Design Patterns Home";
+}
+
+<section class="hero-card mb-5">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+            <span class="hero-badge">ASP.NET Core MVC learning app</span>
+            <h1 class="display-5 fw-bold mt-3">Explore all 23 GOF design patterns in one place.</h1>
+            <p class="lead text-muted mt-3">
+                Each pattern includes two beginner-friendly examples: one real-world scenario and one banking or trading scenario.
+                Use the explorer to open a pattern and read the commented source code directly in the browser.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mt-4">
+                <a asp-controller="Patterns" asp-action="Index" class="btn btn-primary btn-lg">Open pattern explorer</a>
+                <a href="#categories" class="btn btn-outline-secondary btn-lg">See categories</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="stats-panel">
+                <div>
+                    <strong>23</strong>
+                    <span>GOF patterns</span>
+                </div>
+                <div>
+                    <strong>46</strong>
+                    <span>commented examples</span>
+                </div>
+                <div>
+                    <strong>2</strong>
+                    <span>scenarios per pattern</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="categories" class="row g-4">
+    <div class="col-md-4">
+        <article class="category-card">
+            <h2>Creational</h2>
+            <p>Learn how object creation can stay flexible, readable, and easy to change.</p>
+        </article>
+    </div>
+    <div class="col-md-4">
+        <article class="category-card">
+            <h2>Structural</h2>
+            <p>See how classes and objects can be connected without creating tight coupling.</p>
+        </article>
+    </div>
+    <div class="col-md-4">
+        <article class="category-card">
+            <h2>Behavioral</h2>
+            <p>Understand how responsibilities, algorithms, and communication can stay clean.</p>
+        </article>
+    </div>
+</section>

@@ -1,0 +1,42 @@
+@model CodingAgentDesignPatterns.Web.Models.ViewModels.PatternCatalogViewModel
+@{
+    ViewData["Title"] = "Pattern Explorer";
+}
+
+<section class="page-header mb-4">
+    <p class="eyebrow">Pattern explorer</p>
+    <h1>Browse the 23 GOF design patterns</h1>
+    <p class="text-muted mb-0">Open any card to view the commented C# source code for both examples.</p>
+</section>
+
+<div class="row g-3 mb-4">
+    @foreach (var category in Model.Categories)
+    {
+        <div class="col-md-4">
+            <div class="summary-card">
+                <span>@category.Name</span>
+                <strong>@category.Count patterns</strong>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row g-4">
+    @foreach (var pattern in Model.Patterns)
+    {
+        <div class="col-lg-4 col-md-6">
+            <article class="pattern-card h-100">
+                <div class="d-flex justify-content-between align-items-start gap-3">
+                    <div>
+                        <span class="pattern-category">@pattern.Category</span>
+                        <h2 class="h4 mt-2">@pattern.Name</h2>
+                    </div>
+                    <span class="example-count">@pattern.Examples.Count examples</span>
+                </div>
+                <p class="text-muted mt-3">@pattern.Intent</p>
+                <p class="small mb-4">@pattern.WhyItHelps</p>
+                <a asp-controller="Patterns" asp-action="Details" asp-route-slug="@pattern.Slug" class="stretched-link">View code</a>
+            </article>
+        </div>
+    }
+</div>
